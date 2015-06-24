@@ -10,7 +10,7 @@
 
 AAloneCharacter::AAloneCharacter()
 {
-
+	UE_LOG(LogTemp, Log, TEXT("THIS MESSAGE"));
 	MaxUseDistance = 800;
 	bHasNewFocus = true;
 
@@ -129,6 +129,7 @@ void AAloneCharacter::Use_Implementation()
 	ASUsableActor* usable = GetUsableInView();
 	if (usable)
 	{
+		UE_LOG(LogTemp, Log, TEXT("Your message"));
 		usable->OnUsed(this);
 	}
 }
@@ -152,6 +153,7 @@ void AAloneCharacter::SetupPlayerInputComponent(class UInputComponent* InputComp
 
 	InputComponent->BindAxis("MoveForward", this, &AAloneCharacter::MoveForward);
 	InputComponent->BindAxis("MoveRight", this, &AAloneCharacter::MoveRight);
+	InputComponent->BindAction("Use", IE_Pressed, this, &AAloneCharacter::Use);
 
 	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
